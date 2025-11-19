@@ -33,10 +33,11 @@ app.get("/api", (req, res) => {
   res.json({ message: "Welcome to User application." });
 });
 
-// Arrancar el servidor
-app.listen(config.port, (err) => {
+
+app.listen(config.port, "0.0.0.0", (err) => {
   if (err) console.error(err);
   console.info(`Server started on port ${config.port}`);
   console.info("see http://localhost:%s/ in your browser.", config.port);
 });
+
 
