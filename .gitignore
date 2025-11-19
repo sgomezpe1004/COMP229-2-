@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.history/
+client/package_*.json
+client/src/*.jsx
