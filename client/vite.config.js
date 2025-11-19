@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 const { PORT = 10000 } = process.env;
 
 export default defineConfig({
+  base: "./", // importante para que las rutas sean relativas
   plugins: [react()],
   server: {
     proxy: {
@@ -16,10 +17,8 @@ export default defineConfig({
       },
     },
   },
-
   build: {
     emptyOutDir: true,
-    outDir: "dist",
+    outDir: "dist", // dentro de client/dist
   },
 });
-
