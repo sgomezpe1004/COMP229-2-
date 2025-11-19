@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 const { PORT = 10000 } = process.env;
 
 export default defineConfig({
-  root:"./client",
   plugins: [react()],
   server: {
     proxy: {
