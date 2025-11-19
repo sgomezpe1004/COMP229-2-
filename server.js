@@ -23,9 +23,13 @@ mongoose.connection.on("error", () => {
 // Servir archivos estáticos de React
 app.use(express.static(path.join(__dirname, "client/dist")));
 
-// Cualquier ruta que no sea API devuelve index.html (React router)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
+// Todas las rutas que no sean API devuelven index.html (React Router)
+app.use((req, res, next) => {
+  if (!req.path.startsWith("/api")) {
+    res.sendFile(path.join(__dirname, "client/dist", "index.html"));
+  } else {
+    next();
+  }
 });
 
 // Rutas de ejemplo de backend
@@ -33,11 +37,12 @@ app.get("/api", (req, res) => {
   res.json({ message: "Welcome to User application." });
 });
 
-
+// Arrancar el servidor
 app.listen(config.port, "0.0.0.0", (err) => {
   if (err) console.error(err);
   console.info(`Server started on port ${config.port}`);
   console.info("see http://localhost:%s/ in your browser.", config.port);
 });
+
 
 
